@@ -15,14 +15,15 @@ int main (){
         count++;
 	}
     mean = sum/(float)count;
+    source.close();
+    source.open("score.txt");
     while(getline(source,textline)){
-        sd += pow(abs(atof(textline.c_str())-mean),2);
+        sd += pow((atof(textline.c_str())-mean),2);
 	}
-    sd = sqrt(sd/count);
     cout << "Number of data = " << count << '\n';
     cout << setprecision(3);
     cout << "Mean = " << mean << '\n';
-    cout << "Standard deviation = " << sd << '\n';
+    cout << "Standard deviation = " << sqrt(sd/(count-1)) << '\n';
     source.close();
 	return 0;
 }
